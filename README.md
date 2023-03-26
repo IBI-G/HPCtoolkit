@@ -1,4 +1,4 @@
-# HPCtoolkit
+# HPCtoolkit ![Pull Request](https://img.shields.io/badge/Pull%20Request-Welcome-brightgreen)
 HPCを使用するときに、プログレスバーを表示するライブラリ
 
 # 説明
@@ -50,3 +50,7 @@ tqdmを使用するのが一般的だが、なぜかHPCで使用するとリア�
 （明示的にフラッシュすればリアルタイムで出力できるかも　sys.stdout.flush()　）
 
 tqdmにプルリク出してもだしてもよかったかも。
+
+# リリースノート
+
+v1.0 処理終了時間を予測する機能を作りたかったが、未実装

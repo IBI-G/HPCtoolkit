@@ -1,0 +1,9 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+.DS_Store
+.idea/
+build/
+*.egg-info/
+.installed.cfg
+*.egg

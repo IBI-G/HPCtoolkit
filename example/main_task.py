@@ -1,7 +1,6 @@
 import numpy as np
 import math
-import time
-import hpctoolkit_it
+import HPCtoolkit
 
 
 class Constant:
@@ -50,7 +49,7 @@ def main_task(param):
     RX = Constant()
 
     # シミュレーション
-    for idx_En in hpctoolkit_it.HPCToolkit(range(0, len(SIM.EsN0)), SIM):
+    for idx_En in HPCtoolkit.Progress(range(0, len(SIM.EsN0)), SIM):
 
         CH.N0 = 10**(-SIM.EsN0[idx_En]/10)
         CH.sigma = np.sqrt(CH.N0 / 2)

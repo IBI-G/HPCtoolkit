@@ -12,7 +12,7 @@ if __name__ == '__main__':
     SIM = Constant()
     SIM.nworker = 8
     SIM.Kd = 32
-    SIM.wloop = 3
+    SIM.wloop = 5
     SIM.ml = 4
     SIM.EsN0 = np.arange(0, 21, 2)
     SIM.nloop = 10**SIM.wloop

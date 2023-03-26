@@ -1,16 +1,16 @@
 import multiprocessing
-# import psutil
 import datetime
 import time
-# import numpy as np
+import os
+import sys
 
 
-class HPCToolkit(object):
+class Progress(object):
     def __init__(self, EsN0: list, SIM: object):
         self.EsN0 = EsN0
         self.num = len(EsN0)
         self.EsN0_idx = 0
-        self.path = 'progress_bar.txt'
+        self.path = get_caller_directory() + '/progress_bar.txt'
         self.cpu_count = get_spec1()
         self.start_time = get_start_time()
         self.nworker = SIM.nworker
@@ -118,3 +118,16 @@ def get_d_h_m_s(sec: float) -> tuple:
     h, m = divmod(m, 60)
     d = td.days
     return d, h, m, s
+
+
+def get_caller_directory() -> str:
+    # 実行ファイル名を取得
+    script_name = sys.argv[0]
+
+    # 実行ファイルの絶対パスを取得
+    script_path = os.path.abspath(script_name)
+
+    # 実行ファイルのディレクトリパスを取得
+    script_directory = os.path.dirname(script_path)
+
+    return script_directory

@@ -1,5 +1,7 @@
-# HPCtoolkit ![Pull Request](https://img.shields.io/badge/Pull%20Request-Welcome-brightgreen)
+# HPCtoolkit ![Pull Request](https://img.shields.io/badge/Pull%20Requests-Welcome-brightgreen)
 HPCを使用するときに、プログレスバーを表示するライブラリ
+
+Pull Requests Welcome!
 
 # 説明
 exampleフォルダのようにHPCtoolkit使用すると、進捗がテキストファイルに記入される。

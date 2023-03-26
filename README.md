@@ -39,7 +39,7 @@ SIM.lock = manager.Lock()
 
 # インストール
 ```sh
-pip install git+
+pip install git+https://github.com/clcl777/HPCtoolkit.git
 ``` 
 # Requirement
 依存関係はない。

@@ -1,8 +1,8 @@
 import multiprocessing
-import psutil
+# import psutil
 import datetime
 import time
-import numpy as np
+# import numpy as np
 
 
 class HPCToolkit(object):
@@ -27,7 +27,7 @@ class HPCToolkit(object):
         self.start(self.process_idx, 0)
         return self
 
-    def __next__(self):
+    def __next__(self) -> float:
         if not self.EsN0_idx == 0:
             # print(str(self.current-1) + "が終了")
             self.finish(self.process_idx, self.EsN0_idx-1)
@@ -75,7 +75,7 @@ class HPCToolkit(object):
             f.writelines(text_list)
         self.lock.release()
 
-    def get_str_spec(self, nwoker) -> str:
+    def get_str_spec(self, nwoker: int) -> str:
         start_text = "Start: " + self.start_time
         expect_text = "Expect: "
         cpu_count_text = "Active core: " + str(self.cpu_count)
@@ -86,12 +86,12 @@ class HPCToolkit(object):
         return start_text + "\n" + expect_text + "\n" + cpu_count_text + "\n" + nwoker_text + "\n\n" + progress_bar_text
 
 
-def get_spec1():
+def get_spec1() -> int:
     cpu_count = multiprocessing.cpu_count()  # 論理コアの数
     return cpu_count
 
 
-def get_start_time():
+def get_start_time() -> str:
     dt_now = datetime.datetime.now()
     start_time_month = str(dt_now.month)
     start_time_day = str(dt_now.day)
@@ -104,11 +104,6 @@ def get_start_time():
 
 
 def progressbar(current, max) -> str:
-    # args
-    #     current: int/float 現在値
-    #     max: int/float 最大値
-    # length:いじれる。表示したい長さに合わせる。
-    # bar:いじれる。好みでどうぞ。今見えてるやつは、プロポーショナルフォントでも使える
     ratio = current / max
     length = 20
     progress = int(ratio * length)
@@ -117,7 +112,7 @@ def progressbar(current, max) -> str:
     return f'{bar} {percentage}%'
 
 
-def get_d_h_m_s(sec: float):
+def get_d_h_m_s(sec: float) -> tuple:
     td = datetime.timedelta(seconds=sec)
     m, s = divmod(td.seconds, 60)
     h, m = divmod(m, 60)

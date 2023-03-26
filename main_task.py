@@ -48,16 +48,11 @@ def main_task(param):
     CH = Constant()
     err = Constant()
     RX = Constant()
-    # 乱数のシードを設定（worker毎に異なる値）
-    # np.random.seed(1234*nworker_idx)
 
     # シミュレーション
     for idx_En in hpctoolkit_it.HPCToolkit(range(0, len(SIM.EsN0)), SIM):
-        # SIM.HT.start(nworker_idx, idx_En)
 
-        time.sleep(np.random.rand(1)[0]*5)
-
-        CH.N0 = 10**(-SIM.EsN0[idx_En]/10)  # 雑音分散
+        CH.N0 = 10**(-SIM.EsN0[idx_En]/10)
         CH.sigma = np.sqrt(CH.N0 / 2)
         err.noe = np.zeros([3, 1])
         err.nos = np.zeros([3, 1])
@@ -83,12 +78,12 @@ def main_task(param):
 
             # ERR
             noe_ins = (RX.bit != TX.bit.reshape(-1)).sum()
-            err.noe[0] = err.noe[0] + noe_ins
+            err.noe[0] = err.noe[0] + noe_ins  # BER
             err.noe[1] = err.noe[1] + int(noe_ins > 0)  # BLER
             # err.noe[1] = err.noe[1] + sum(sum(RX.alp~ = TX.alp)) #SERを求めるために必要
             # err.noe[2] = err.noe[2] + (noe_ins~=0) #FERを求めるのに必要
-            err.nos[0] = err.nos[0] + SIM.ml * SIM.Kd
-            err.nos[1] = err.nos[1] + 1
+            err.nos[0] = err.nos[0] + SIM.ml * SIM.Kd  # BER
+            err.nos[1] = err.nos[1] + 1  # BLER
             # err.nos[1] = err.nos[1] + SIM.M * SIM.Kd #SERを求めるために必要
             # err.nos[2] = err.nos[2] + 1 #FERを求めるのに必要
             # err.sqerr = err.sqerr + np.mean(mean(abs(CH.H_hat - CH.H). ^ 2)) #MSEを求めるのに必要

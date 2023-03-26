@@ -2,7 +2,6 @@ import numpy as np
 import main_task
 import plot_ber
 import multiprocessing
-from scipy import special
 
 
 class Constant:
@@ -19,10 +18,10 @@ if __name__ == '__main__':
     SIM.nloop = 10**SIM.wloop
     SIM.Q = 2**SIM.ml
     RES = np.zeros([len(SIM.EsN0), 7])
+
+    # hpctoolkitのための設定
     manager = multiprocessing.Manager()
     SIM.lock = manager.Lock()
-
-    # SIM.HT = hpctoolkit_it.HPCToolkit(SIM)
 
     if SIM.nworker == 1:
         RES = main_task.main_task([0, SIM])
@@ -38,6 +37,4 @@ if __name__ == '__main__':
 
     SIM.BER = RES[:, 0]/RES[:, 3]
     SIM.BLER = RES[:, 1] / RES[:, 4]
-    gamma = 10**(SIM.EsN0/10)
-    SIM.BER_theoretical = 3/8*special.erfc(np.sqrt(gamma/10))
     plot_ber.plot_ber(SIM)
